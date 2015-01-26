@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.tigges.tournament.ui.view.SelectRoundPlayerPage">
+   <children>
+      <Label styleClass="Label" text="%RoundPlayers" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <TableView fx:id="roundPlayerTable" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <columns>
+            <TableColumn fx:id="roundPlayerNameColumn" editable="false" maxWidth="1000.0" minWidth="20.0" prefWidth="500.0" text="%PlayerName" />
+         </columns></TableView>
+      <Button mnemonicParsing="false" onAction="#handleRemovePlayer" text="%RemovePlayer" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></Button>
+   </children>
+</AnchorPane>

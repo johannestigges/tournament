@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="1024.0" prefHeight="700.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="de.tigges.tournament.ui.view.RootController">
+	<top>
+		<MenuBar>
+			<menus>
+				<Menu text="%_File">
+					<items>
+						<MenuItem onAction="#handleNew" text="%_New" />
+						<MenuItem onAction="#handleOpen" text="%_Open" />
+						<MenuItem onAction="#handleSave" text="%_Save" />
+						<MenuItem onAction="#handleSaveAs" text="%Save_As" />
+						<MenuItem onAction="#handleExit" text="%E_xit" />
+					</items>
+				</Menu>
+				<Menu text="%_Help">
+					<items>
+						<MenuItem onAction="#handleAbout" text="%_About" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+</BorderPane>

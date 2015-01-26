@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.tigges.tournament.ui.view.NewRoundDialogController">
+	<children>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane>
+               <children>
+                  <Label text="%RoundPlayers" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <ListView fx:id="roundPlayers" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+                  <HBox alignment="TOP_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleAddPlayer" text="%AddPlayer" />
+                        <Button mnemonicParsing="false" onAction="#handleRemovePlayer" text="%RemovePlayer" />
+                        <Button mnemonicParsing="false" onAction="#handleGeneratePausedPlayers" text="%GeneratePausedPlayers" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane>
+               <children>
+                  <Label text="%PausedPlayers" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <ListView fx:id="pausedPlayers" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+                  <HBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleAddPausedPlayer" text="%AddPlayer" />
+                        <Button mnemonicParsing="false" onAction="#handleRemovePausedPlayer" text="%RemovePlayer" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+		<HBox alignment="BOTTOM_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<Button mnemonicParsing="false" onAction="#handleOK" text="%Ok">
+				</Button>
+				<Button mnemonicParsing="false" onAction="#handleCancel" text="%Cancel">
+				</Button>
+			</children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+		</HBox>
+	</children>
+</AnchorPane>

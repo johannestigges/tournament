@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.tigges.tournament.ui.view.TournamentController">
+	<children>
+		<SplitPane dividerPositions="0.3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<items>
+				<AnchorPane>
+					<children>
+						<Label styleClass="Label" text="%Players" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+						<TableView fx:id="playerTable" editable="true" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+							<columns>
+								<TableColumn fx:id="playerIdColumn" editable="false" maxWidth="50.0" prefWidth="-1.0" text="%Id" />
+								<TableColumn fx:id="playerNameColumn" maxWidth="300.0" prefWidth="-1.0" text="%Name" />
+								<TableColumn fx:id="playerScoreColumn" editable="false" maxWidth="100.0" prefWidth="-1.0" text="%Score" />
+								<TableColumn fx:id="playerHandicapColumn" editable="false" maxWidth="100.0" prefWidth="-1.0" text="%Handicap" />
+							</columns>
+							<columnResizePolicy>
+								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+							</columnResizePolicy>
+						</TableView>
+						<HBox spacing="10.0" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="5.0">
+							<children>
+								<TextField fx:id="newPlayerName" promptText="%NewPlayer" HBox.hgrow="ALWAYS">
+								</TextField>
+								<Button mnemonicParsing="false" onAction="#handleNewPlayer" text="%AddPlayer" />
+							</children>
+							<padding>
+								<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+							</padding>
+						</HBox>
+						<Button mnemonicParsing="false" onAction="#handlePlayerDetails" text="%PlayerOverview" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding></Button>
+					</children>
+				</AnchorPane>
+				<AnchorPane>
+					<children>
+						<SplitPane dividerPositions="0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<items>
+								<AnchorPane>
+									<children>
+										<Label styleClass="Label" text="%Rounds" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+										<TableView fx:id="roundsTable" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+											<columns>
+												<TableColumn fx:id="roundsRoundColumn" maxWidth="80.0" prefWidth="-1.0" text="%Round" />
+												<TableColumn fx:id="roundsMatchesColumn" maxWidth="80.0" prefWidth="-1.0" text="%NumberOfMatches" />
+												<TableColumn fx:id="roundsPausedPlayers" maxWidth="1000.0" prefWidth="-1.0" text="%PausedPlayers" />
+											</columns>
+											<columnResizePolicy>
+												<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+											</columnResizePolicy>
+										</TableView>
+										<HBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+											<children>
+												<Button mnemonicParsing="false" onAction="#handleNewRound" text="%AddRound" />
+											</children>
+											<padding>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</padding>
+										</HBox>
+									</children>
+								</AnchorPane>
+								<AnchorPane>
+									<children>
+										<Label fx:id="matchesLabel" styleClass="Label" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+										<TableView fx:id="matchesTable" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+											<columns>
+												<TableColumn fx:id="matchHomeTeamColumn" maxWidth="500.0" prefWidth="-1.0" text="%HomeTeam" />
+												<TableColumn fx:id="matchAwayTeamColumn" maxWidth="500.0" prefWidth="-1.0" text="%AwayTeam" />
+												<TableColumn maxWidth="150.0" prefWidth="-1.0" text="%Score">
+													<columns>
+														<TableColumn fx:id="matchHomeScoreColumn" maxWidth="75.0" prefWidth="-1.0" text="%HomeScore" />
+														<TableColumn fx:id="matchAwayScoreColumn" maxWidth="75.0" prefWidth="-1.0" text="%AwayScore" />
+													</columns>
+												</TableColumn>
+											</columns>
+											<columnResizePolicy>
+												<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+											</columnResizePolicy>
+										</TableView>
+									</children>
+								</AnchorPane>
+							</items>
+						</SplitPane>
+					</children>
+				</AnchorPane>
+			</items>
+		</SplitPane>
+	</children>
+</AnchorPane>
