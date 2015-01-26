@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.tigges.tournament.ui.view.SelectPausedPlayerPage">
+   <children>
+      <SplitPane dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane>
+               <children>
+                  <Label styleClass="Label" text="%RoundPlayers" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <TableView fx:id="roundPlayerTable" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                     <columns>
+                        <TableColumn fx:id="roundPlayerNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%PlayerName" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy></TableView>
+                  <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleCalculatePausedPlayers" text="%CalculatePausedPlayers">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding></Button>
+                        <Button mnemonicParsing="false" onAction="#handleAddPausedPlayer" text="AddPausedPlayer" />
+                        <Button mnemonicParsing="false" onAction="#handleRemovePausedPlayer" text="RemovePausedPlayer" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane>
+               <children>
+                  <Label styleClass="Label" text="%PausedPlayers" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <TableView fx:id="pausedPlayerTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                     <columns>
+                        <TableColumn fx:id="pausedPlayerNameColumn" minWidth="-1.0" prefWidth="-1.0" text="%PlayerName" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy></TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

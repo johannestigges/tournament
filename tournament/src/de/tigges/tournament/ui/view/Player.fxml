@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.tigges.tournament.ui.view.PlayerController">
+   <children>
+      <ComboBox fx:id="players" onAction="#handlePlayerSelected" VBox.vgrow="NEVER">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></ComboBox>
+      <WebView fx:id="webView" prefHeight="500.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+   </children>
+</VBox>
