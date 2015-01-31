@@ -36,12 +36,11 @@ public class PlayerLogic {
 	}
 	
 	/**
-	 * select a partner for the given player
+	 * adds a player to a team
 	 * <p>
-	 * <li>The partner must be one player of <code>actual Round players</code>.
-	 * <li>The partner must not be one player of the <code>actual round paused players</code>.
-	 * <li>The partner cannot play in another match of the actual round.
-	 * Then we have a list of possible partners.
+	 * <li>The new team player must be one player of <code>actual Round players</code>.
+	 * <li>The new team player cannot play in another match of the actual round.
+	 * Then we have a list of possible players.
 	 * <p>
 	 * With this list of possible partners, create a scored list. The score tells,
 	 * how often the possible player has already been a team member in the previous rounds.
@@ -49,33 +48,42 @@ public class PlayerLogic {
 	 * Select the partner with the lowest score = select the player who wasn't in the players
 	 * team.
 	 * 
-	 * @param player search a partner for this player
-	 * @param actualRound
+	 * @param team
+	 * @param availablePlayers
 	 * @param previousRounds all previous rounds
 	 * 
 	 * @return the id of the selected partner
 	 */
-	public int selectPartner(Player player, Round actualRound, ObservableList<Round> previousRounds) {
-		ObservableList<Player> possiblePartners = createNew(actualRound.getPlayers());
-		
-		ListUtil.remove(possiblePartners, player);
-		ListUtil.removeAll(possiblePartners, actualRound.getPausedPlayers());
-		
-		for (Match match: actualRound.getMatches()) {
-			ListUtil.removeAll(possiblePartners, match.getHomeTeam());
-			ListUtil.removeAll(possiblePartners, match.getAwayTeam());
+	public void addTeamPlayer(ObservableList<Player> team, ObservableList<Player> availablePlayers, ObservableList<Round> previousRounds) {
+		if (team.isEmpty()) {
+			team.add(RandomUtil.removeRandomElement(availablePlayers));
+			return;
 		}
+		ObservableList<Player> scoredPlayers = createNew(availablePlayers);
 		
 		for (Round round: previousRounds) {
 			for (Match match: round.getMatches()) {
-				addPartnerScore(possiblePartners, player, match.getHomeTeam());
-				addPartnerScore(possiblePartners, player, match.getAwayTeam());
+				addTeamScore(team, scoredPlayers, match.getHomeTeam());
+				addTeamScore(team, scoredPlayers, match.getAwayTeam());
 			}
 		}
-
-		return selectPlayerWithLowestScore(possiblePartners);
+		int newPlayerId = selectPlayerWithLowestScore(scoredPlayers);
+		Player newPlayer = ListUtil.findAndRemove(availablePlayers, newPlayerId);
+		team.add(newPlayer);
 	}
 		
+
+	private void addTeamScore(ObservableList<Player> team, ObservableList<Player> availablePlayers,	ObservableList<Player> matchTeam) {
+		for (Player player: availablePlayers) {
+			if (matchTeam.contains(player)) {
+				for (Player teamPlayer: team) {
+					if (matchTeam.contains(teamPlayer)) {
+						player.increaseScore(1);
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * calculate the 'paused player score' for a list of players.
@@ -127,26 +135,6 @@ public class PlayerLogic {
 		// select a random element from the list
 		return players.size() > 0 ? RandomUtil.getRandomElement(players).getId() : 0;
 	}
-
-	/**
-	 * add a 'partner score' to a list of players
-	 * @param score
-	 * @param player
-	 * @param team
-	 */
-	private void addPartnerScore (ObservableList<Player> score, Player player, ObservableList<Player> team) {
-		if (ListUtil.contains(team, player.getId()) == false) {
-			return;
-		}
-		for (Player teamPlayer: team) {
-			if (teamPlayer.getId() != player.getId()) {
-				Player partner = ListUtil.find(score, teamPlayer.getId());
-				if (partner != null) {
-					partner.setScore(partner.getScore() + 1);
-				}
-			}
-		}
-	}
 	
 	/**
 	 * creates a new list of players
@@ -157,10 +145,10 @@ public class PlayerLogic {
 	 * @param list
 	 * @return
 	 */
-	private ObservableList<Player> createNew(ObservableList<Player> list) {
+	public ObservableList<Player> createNew(ObservableList<Player> list) {
 		ObservableList<Player> newList = FXCollections.observableArrayList();
 		for (Player player: list) {
-			newList.add(new Player(player.getId()));
+			newList.add(new Player(player));
 		}
 		return newList;
 	}

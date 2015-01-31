@@ -25,6 +25,16 @@ public class Player extends Id {
 		setId(id);
 	}
 	
+	/**
+	 * copy all data from another player except the score!
+	 * @param player
+	 */
+	public Player(Player player) {
+		this(player.getId());
+		setName(player.getName());
+		setHandicap(player.getHandicap());
+	}
+	
 	public String getName() {
 		return name.get();
 	}
@@ -57,7 +67,7 @@ public class Player extends Id {
 	
 	@Override
 	public String toString() {
-		return getName();
+		return getName() == null ? String.format("id(%d)",getId()) : getName();
 	}
 	
 	public int increaseScore (int amount) {

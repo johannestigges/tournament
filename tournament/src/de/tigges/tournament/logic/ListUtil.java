@@ -68,4 +68,18 @@ public class ListUtil {
 			remove(list, elementToRemove);
 		}
 	}
+	
+	/**
+	 * searches for am element with a given id and removes it from the list
+	 * @param list
+	 * @param id
+	 * @return found and removed element or null
+	 */
+	public static <T extends Id> T findAndRemove (ObservableList<T> list, int id) {
+		T element = find(list, id);
+		if (element != null) {
+			list.remove(element);
+		}
+		return element;
+	}
 }

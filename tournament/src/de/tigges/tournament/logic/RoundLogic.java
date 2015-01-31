@@ -15,7 +15,7 @@ import de.tigges.tournament.model.Tournament;
  */
 public class RoundLogic {
 
-	private static final int MAX_TRIES = 1000;
+	private PlayerLogic playerLogic = new PlayerLogic();
 	
 	/**
 	 * creates a new round by calling @{@link #createRoundComplete(Tournament)}
@@ -107,7 +107,7 @@ public class RoundLogic {
 	 * @param round
 	 */
 	public void addPausedPlayer (ObservableList<Round> previousRounds, Round round) {
-		int pausedPlayerId = new PlayerLogic().calculatePausedPlayerId(round, previousRounds);
+		int pausedPlayerId = playerLogic.calculatePausedPlayerId(round, previousRounds);
 		Player pausedPlayer = ListUtil.find(round.getPlayers(), pausedPlayerId);
 		round.getPausedPlayers().add(pausedPlayer);
 		ListUtil.remove(round.getPlayers(), pausedPlayer);
@@ -150,10 +150,12 @@ public class RoundLogic {
 	 * @return
 	 */
 	public Match createMatch(Tournament tournament, Round newRound) {
-		if (!canAddMatch(tournament, newRound)) {
+		if (canAddMatch(tournament, newRound) == false) {
 			return null;
 		}
-		ObservableList<Player> availablePlayers = FXCollections.observableArrayList(newRound.getPlayers()); 
+		
+		ObservableList<Player> availablePlayers = playerLogic.createNew(newRound.getPlayers());
+
 		for (Match match: newRound.getMatches()) {
 			availablePlayers.removeAll(match.getHomeTeam());
 			availablePlayers.removeAll(match.getAwayTeam());
@@ -162,26 +164,14 @@ public class RoundLogic {
 		ObservableList<Player> homeTeam = FXCollections.observableArrayList();
 		ObservableList<Player> awayTeam = FXCollections.observableArrayList();
 		
-		int tries = 0;
-		boolean matchOk = false;
-		while (matchOk == false && tries++ < MAX_TRIES) {
-			ObservableList<Player> players = FXCollections.observableArrayList(availablePlayers);
-			homeTeam.clear();
-			awayTeam.clear();
-			for (int i=0; i < tournament.getTeamSize(); i++) {
-				homeTeam.add(RandomUtil.removeRandomElement(players));
-				awayTeam.add(RandomUtil.removeRandomElement(players));
-			}
-			matchOk = true;
-			if (checkTeam(tournament.getRounds(), homeTeam) == true || checkTeam(tournament.getRounds(), awayTeam) == true) {
-//				System.out.printf("Team has already played. try again %d in round %d.%n",tries,newRound.getRound());
-				matchOk = false;
-			}
-		}
-		if (matchOk == false) {
-			System.out.printf("no new team found in round %d.%n", newRound.getRound());
+		while (homeTeam.size() < tournament.getTeamSize()) {
+			playerLogic.addTeamPlayer(homeTeam, availablePlayers, tournament.getRounds());
 		}
 		
+		while (awayTeam.size() < tournament.getTeamSize()) {
+			playerLogic.addTeamPlayer(awayTeam, availablePlayers, tournament.getRounds());
+		}
+				
 		Match match = new Match(homeTeam, awayTeam);
 		return match;
 	}
