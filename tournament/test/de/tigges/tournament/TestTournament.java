@@ -22,15 +22,15 @@ public class TestTournament {
 
 	@Test
 	public void test() {
-		printTournament(createTournament(17,8));
-		printTournament(createTournament(5, 5));
+		printTournament(createTournament(2, 6, 17,8));
+		printTournament(createTournament(2, 6, 5, 5));
 	}
 	
 	@Test
 	public void testLoadAndSave() throws JAXBException {
 		File file = new File("testtournament.xml");
 		
-		Tournament tournament = createTournament(24, 5);
+		Tournament tournament = createTournament(2, 6, 24, 5);
 
 		JAXBContext context = JAXBContext.newInstance(Tournament.class);
         Marshaller m = context.createMarshaller();
@@ -47,8 +47,10 @@ public class TestTournament {
         assert tournament.getRounds().size() == 5;
 	}
 
-	private Tournament createTournament (int players, int rounds) {
+	private Tournament createTournament (int teamSize, int courts, int players, int rounds) {
 		Tournament tournament = new Tournament();
+		tournament.setTeamSize(teamSize);
+		tournament.setCourts(courts);
 		for (int i=0; i<players; i++) {
 			tournament.getPlayers().add(new Player(String.format("%2d", i)));
 		}
@@ -67,8 +69,8 @@ public class TestTournament {
 	}
 	
 	private void printTournament(Tournament tournament) {
-		System.out.printf("Tournament with %d players and %d rounds%n", 
-				tournament.getPlayers().size(), tournament.getRounds().size());
+		System.out.printf("Tournament (team size = %d, %d courts) with %d players and %d rounds%n", 
+				tournament.getTeamSize(), tournament.getCourts(), tournament.getPlayers().size(), tournament.getRounds().size());
 		for (Round round: tournament.getRounds()) {
 			System.out.printf("  Round %d with paused players %s%n", 
 					round.getRound(),printPlayers(round.getPausedPlayers()));
