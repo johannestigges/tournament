@@ -32,15 +32,19 @@ public class TestTournament {
 
 	@Test
 	public void test() {
-		printTournament(createTournament(2, 6, 17,8));
-		printTournament(createTournament(2, 6, 5, 5));
+		// single tournament with only 1 court
+		printTournament(createTournament(1, 1, 5, 5));
+		// double tournament with 6 courts
+		printTournament(createTournament(2, 6, 17, 8));
+		// tournament with large teams
+		printTournament(createTournament(6, 2, 23, 20));
 	}
 	
 	@Test
 	public void testLoadAndSave() throws JAXBException {
 		File file = new File("testtournament.xml");
 		
-		Tournament tournament = createTournament(2, 6, 24, 5);
+		Tournament tournament = createTournament(6,4,50,10);
 
 		JAXBContext context = JAXBContext.newInstance(Tournament.class);
         Marshaller m = context.createMarshaller();
@@ -96,6 +100,10 @@ public class TestTournament {
 		}
 	}
 	
+	/**
+	 * consistency checks for a tournament
+	 * @param tournament
+	 */
 	private void checkTournament(Tournament tournament) {
 		assertNotNull(tournament);
 		assertNotNull(tournament.getTeamSize());
@@ -108,11 +116,15 @@ public class TestTournament {
 		}
 	}
 
+	/**
+	 * consistency checks for one round
+	 * @param round
+	 * @param tournament
+	 */
 	private void checkRound(Round round, Tournament tournament) {
 		assertTrue(round.getPlayers().size() + round.getPausedPlayers().size() <= tournament.getPlayers().size());
 		assertTrue(round.getPlayers().size() % (tournament.getTeamSize() * 2) == 0);
-		assertTrue(round.getPausedPlayers().size() < (tournament.getTeamSize() * 2));
-		assertTrue(round.getPlayers().size() < tournament.getCourts() * tournament.getTeamSize() * 2);
+		assertTrue(round.getPlayers().size() <= tournament.getCourts() * tournament.getTeamSize() * 2);
 		assertTrue(round.getMatches().size() <= tournament.getCourts());
 		assertTrue(tournament.getPlayers().containsAll(round.getPlayers()));
 		assertTrue(tournament.getPlayers().containsAll(round.getPausedPlayers()));
@@ -125,8 +137,13 @@ public class TestTournament {
 			checkMatch(match,round,tournament);
 		}
 	}
-	
 
+	/**
+	 * consistency checks for one match
+	 * @param match
+	 * @param round
+	 * @param tournament
+	 */
 	private void checkMatch(Match match, Round round, Tournament tournament) {
 		assertEquals(tournament.getTeamSize(), match.getHomeTeam().size());
 		assertEquals(tournament.getTeamSize(), match.getAwayTeam().size());
@@ -145,6 +162,12 @@ public class TestTournament {
 		}
 	}
 
+	/**
+	 * check that all Elements from list1 are not in list2 and
+	 * all elements from list2 are not in list1.
+	 * @param l1
+	 * @param l2
+	 */
 	private <I extends Id> void assertDistinct (ObservableList<I> l1, ObservableList<I> l2) {
 		for (I i1: l1) {
 			assertFalse(l2.contains(i1));
@@ -154,6 +177,10 @@ public class TestTournament {
 		}
 	}
 	
+	/**
+	 * check that there are no elements with the same id in a list.
+	 * @param l
+	 */
 	private <I extends Id> void assertNoDoubles(ObservableList<I> l) {
 		Set<I> set = new HashSet<I>();
 		for (I i: l) {
