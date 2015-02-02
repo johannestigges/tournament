@@ -54,6 +54,14 @@ public class SelectPausedPlayerPage extends NewRoundWizardPage {
 		}		
 	}
 	
+	@FXML
+	private void handleRemoveAllPausePlayers() {
+		for (Player player: getRound().getPausedPlayers()) {
+			getRound().getPlayers().add(player);
+		}
+		getRound().getPausedPlayers().clear();
+	}
+	
 	@Override
 	public void onActivate(Activate a) {
 		if (Activate.PRIOR.equals(a) == false) {

@@ -1,5 +1,7 @@
 package de.tigges.ui.wizard;
 
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,12 +22,14 @@ public class Wizard extends BorderPane {
 	private final Button cancelButton;
 	private final Button finishButton;
 	private final Label pageTitle;
+	private final ResourceBundle bundle;
 
 	public Wizard(WizardPage... wizardPages) {
-		priorButton = new Button("_Previous");
-		nextButton = new Button("N_ext");
-		cancelButton = new Button("_Cancel");
-		finishButton = new Button("_Finish");
+		bundle = ResourceBundle.getBundle(Wizard.class.getName());
+		priorButton = new Button(resolve("Previous"));
+		nextButton = new Button(resolve("Next"));
+		cancelButton = new Button(resolve("Cancel"));
+		finishButton = new Button(resolve("Finish"));
 		pageTitle = new Label();
 
 		for (WizardPage page : wizardPages) {
@@ -37,6 +41,10 @@ public class Wizard extends BorderPane {
 		setTop(pageTitle);
 	}
 	
+	private String resolve(String key) {
+		return bundle.getString(key);
+	}
+
 	public void addPage(WizardPage page) {
 		page.setWizard(this);
 		pages.add(page);
