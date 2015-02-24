@@ -124,10 +124,10 @@ public class TournamentController extends BaseController<Tournament> {
 		roundsTable.setItems(mainApp.getData().getRounds());
 	}
 
-	private Object showMatches(Round newValue) {
-		if (newValue != null) {
-			matchesTable.setItems(newValue.getMatches());
-			matchesLabel.setText(resolve("MatchesInRound", newValue.getRound()));
+	private Object showMatches(Round round) {
+		if (round != null) {
+			matchesTable.setItems(round.getMatches());
+			matchesLabel.setText(resolve("MatchesInRound", round.getRound()));
 		} else {
 			matchesTable.setItems(null);
 			matchesLabel.setText(resolve("NoRoundSelected"));

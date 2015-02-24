@@ -37,20 +37,15 @@ public class ScoreLogic {
 	 * (home or away) to the player score, if the player is
 	 * in the home or away team. 
 	 *  
-	 * ToDo: take into account the player handicaps?
-	 * 
 	 * @param player
 	 * @param match
 	 */
 	public void addMatchScore (Player player, Match match) {
-		int matchScore = 0;
 		if (match.getHomeTeam().contains(player)) {
-			matchScore = match.getHomeScore();
-		} else if (match.getAwayTeam().contains(player)) {
-			matchScore = match.getAwayScore();
-		}
-		if (matchScore != 0) {
-			player.setScore(player.getScore() + matchScore);
+			player.increaseScore(match.getHomeScore());
+		} 
+		if (match.getAwayTeam().contains(player)) {
+			player.increaseScore(match.getAwayScore());
 		}
 	}
 }

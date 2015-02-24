@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import de.tigges.tournament.model.Id;
 
 /**
- * Helperclass with static utility methods concerning lists
+ * Helper class with static utility methods concerning lists
  * 
  * @author johannes
  */
@@ -28,7 +28,7 @@ public class ListUtil {
 	}
 	
 	/**
-	 * check, wether a list contains an element with a specific id
+	 * check, if a list contains an element with a specific {@link Id}
 	 * @param list
 	 * @param id
 	 * @return true, if the list contains an element with the given id
@@ -70,7 +70,7 @@ public class ListUtil {
 	}
 	
 	/**
-	 * searches for am element with a given id and removes it from the list
+	 * searches for am element with a given {@link Id} and removes it from the list
 	 * @param list
 	 * @param id
 	 * @return found and removed element or null

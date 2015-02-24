@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Helperclass with static methods concerning random numbers.
+ * Helper class with static methods concerning random numbers.
  * 
  * @see Random
  * @author johannes
@@ -26,7 +26,7 @@ public class RandomUtil {
 	/**
 	 * returns the index of a random element of a list
 	 * @param list
-	 * @return
+	 * @return random list index or -1, if the list is empty
 	 */
 	public static int getRandomIndex(List<?> list) {
 		return (list == null || list.isEmpty()) ? -1 : nextInt(list.size());

@@ -105,7 +105,7 @@ public class PlayerController extends BaseController<Tournament> {
 	}
 
 	private void show() {
-		System.out.println(sb.toString());
+//		System.out.println(sb.toString());
 		webView.getEngine().loadContent(sb.toString());
 	}
 
@@ -125,5 +125,4 @@ public class PlayerController extends BaseController<Tournament> {
 	private void showTagEnd(String tag) {
 		sb.append("</").append(tag).append(">\n");
 	}
-	
 }

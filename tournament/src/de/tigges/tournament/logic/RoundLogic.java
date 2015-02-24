@@ -18,7 +18,7 @@ public class RoundLogic {
 	private PlayerLogic playerLogic = new PlayerLogic();
 	
 	/**
-	 * creates a new round by calling @{@link #createRoundComplete(Tournament)}
+	 * creates a new round by calling {@link #createRoundComplete(Tournament)}
 	 * and adds the new round to the tournament
 	 * 
 	 * @param tournament
@@ -65,7 +65,7 @@ public class RoundLogic {
 	 * <li>calculate the round number
 	 * <li>copy all tournament players as round players
 	 * <li>calculate all paused players
-	 * <li>generates ll round matches
+	 * <li>generates all round matches
 	 * 
 	 * @param tournament
 	 * @return round with players, paused players and matches
@@ -144,7 +144,6 @@ public class RoundLogic {
 	/**
 	 * create one match
 	 *
-	 * ToDo: use {@link PlayerLogic#selectPartner(Player, Round, ObservableList)}
 	 * @param previousRounds
 	 * @param newRound
 	 * @return
@@ -189,22 +188,5 @@ public class RoundLogic {
 			ListUtil.removeAll(availablePlayers, match.getAwayTeam());
 		}
 		return availablePlayers.size() >= tournament.getTeamSize() * 2;
-	}
-	
-	/**
-	 * check whether this team has already played together in a previous round
-	 * @param rounds
-	 * @param team
-	 * @return
-	 */
-	protected boolean checkTeam (ObservableList<Round> rounds, ObservableList<Player> team) {
-		for (Round round: rounds) {
-			for (Match match: round.getMatches()) {
-				if (match.isHomeTeam(team) || match.isAwayTeam(team)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 }
