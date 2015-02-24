@@ -75,8 +75,4 @@ public class Player extends Id {
 		score.set(newScore);
 		return newScore;
 	}
-	
-	public int incrementScore() {
-		return increaseScore(1);
-	}
 }

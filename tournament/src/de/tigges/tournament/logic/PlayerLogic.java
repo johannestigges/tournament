@@ -42,11 +42,12 @@ public class PlayerLogic {
 	 * <li>The new team player cannot play in another match of the actual round.
 	 * Then we have a list of possible players.
 	 * <p>
-	 * With this list of possible partners, create a scored list. The score tells,
-	 * how often the possible player has already been a team member in the previous rounds.
+	 * With this list of possible players, create a scored list. 
+	 * The score tells, how often the possible player has already been 
+	 * a team member in the previous rounds.
 	 * <p>
-	 * Select the partner with the lowest score = select the player who wasn't in the players
-	 * team.
+	 * Select the player with the lowest score = 
+	 * select the player who hasen't been in the team.
 	 * 
 	 * @param team
 	 * @param availablePlayers
@@ -55,10 +56,13 @@ public class PlayerLogic {
 	 * @return the id of the selected partner
 	 */
 	public void addTeamPlayer(ObservableList<Player> team, ObservableList<Player> availablePlayers, ObservableList<Round> previousRounds) {
+		// select the first team member randomly
 		if (team.isEmpty()) {
 			team.add(RandomUtil.removeRandomElement(availablePlayers));
 			return;
 		}
+		
+		// make a copy of all available players to calculate the score
 		ObservableList<Player> scoredPlayers = createNew(availablePlayers);
 		
 		for (Round round: previousRounds) {
@@ -72,7 +76,16 @@ public class PlayerLogic {
 		team.add(newPlayer);
 	}
 		
-
+	/**
+	 * calculates the 'team score' for all available players
+	 * <p>
+	 * if an available player is in the match team,
+	 * the score of the available player is increased with all team players,
+	 * that are in the team and in the match team.
+	 * @param team
+	 * @param availablePlayers
+	 * @param matchTeam
+	 */
 	private void addTeamScore(ObservableList<Player> team, ObservableList<Player> availablePlayers,	ObservableList<Player> matchTeam) {
 		for (Player player: availablePlayers) {
 			if (matchTeam.contains(player)) {
@@ -98,7 +111,7 @@ public class PlayerLogic {
 			for (Player player: round.getPausedPlayers()) {
 				Player p = ListUtil.find(possiblePausedPlayers, player.getId());
 				if (p != null) {
-					p.incrementScore();
+					p.increaseScore(1);
 				}
 			}
 		}
