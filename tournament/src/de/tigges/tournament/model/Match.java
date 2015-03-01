@@ -5,14 +5,13 @@ import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import javax.xml.bind.annotation.XmlElement;
 
 
 public class Match extends Id {
-	private final ObservableList<Player> homeTeam;
-	private final ObservableList<Player> awayTeam;
+	private final List<Player> homeTeam;
+	private final List<Player> awayTeam;
 	private final IntegerProperty homeScore;
 	private final IntegerProperty awayScore;
 	
@@ -23,7 +22,7 @@ public class Match extends Id {
 		this.awayTeam = FXCollections.observableArrayList();
 	}
 	
-	public Match (ObservableList<Player> homeTeam, ObservableList<Player> awayTeam) {
+	public Match (List<Player> homeTeam, List<Player> awayTeam) {
 		this();
 		setHomeTeam(homeTeam);
 		setAwayTeam(awayTeam);
@@ -35,17 +34,17 @@ public class Match extends Id {
 	}
 	
 	@XmlElement(name="homeTeam")
-	public ObservableList<Player> getHomeTeam() {
+	public List<Player> getHomeTeam() {
 		return homeTeam;
 	}
 	
-	public void setAwayTeam(ObservableList<Player> awayTeam) {
+	public void setAwayTeam(List<Player> awayTeam) {
 		this.awayTeam.clear();
 		this.awayTeam.addAll(awayTeam);
 	}
 	
 	@XmlElement(name="awayTeam")
-	public ObservableList<Player> getAwayTeam() {
+	public List<Player> getAwayTeam() {
 		return awayTeam;
 	}
 
@@ -73,12 +72,12 @@ public class Match extends Id {
 		setAwayScore(awayScore);
 	}
 
-	public boolean isHomeTeam (ObservableList<Player> team) {
+	public boolean isHomeTeam (List<Player> team) {
 		return team.size() == homeTeam.size() &&  
 				homeTeam.containsAll(team) && 
 				team.containsAll(homeTeam);
 	}
-	public boolean isAwayTeam (ObservableList<Player> team) {
+	public boolean isAwayTeam (List<Player> team) {
 		return team.size() == awayTeam.size() && 
 				awayTeam.containsAll(team) && 
 				team.containsAll(awayTeam);

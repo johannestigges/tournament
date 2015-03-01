@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -120,13 +121,13 @@ public class TournamentController extends BaseController<Tournament> {
 
 	@Override
 	public void onStart() {
-		playerTable.setItems(mainApp.getData().getPlayers());
-		roundsTable.setItems(mainApp.getData().getRounds());
+		playerTable.setItems((ObservableList<Player>) mainApp.getData().getPlayers());
+		roundsTable.setItems((ObservableList<Round>) mainApp.getData().getRounds());
 	}
 
 	private Object showMatches(Round round) {
 		if (round != null) {
-			matchesTable.setItems(round.getMatches());
+			matchesTable.setItems((ObservableList<Match>) round.getMatches());
 			matchesLabel.setText(resolve("MatchesInRound", round.getRound()));
 		} else {
 			matchesTable.setItems(null);

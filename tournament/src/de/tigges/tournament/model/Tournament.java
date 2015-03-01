@@ -1,5 +1,7 @@
 package de.tigges.tournament.model;
 
+import java.util.List;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -10,8 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="tournament")
 public class Tournament {
-	private final ObservableList<Round> rounds;
-	private final ObservableList<Player> players;
+	private final List<Round> rounds;
+	private final List<Player> players;
 	private final IntegerProperty teamSize;
 	private final IntegerProperty courts;
 	
@@ -38,20 +40,20 @@ public class Tournament {
 	}
 	
 	@XmlElement(name="round")
-	public ObservableList<Round> getRounds() {
+	public List<Round> getRounds() {
 		return rounds;
 	}
-	public void setRounds(ObservableList<Round> rounds) {
+	public void setRounds(List<Round> rounds) {
 		this.rounds.clear();
 		this.rounds.addAll(rounds);
 	}
 	
 	@XmlElement(name="player")
-	public ObservableList<Player> getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
 
-	public void setPlayers(ObservableList<Player> players) {
+	public void setPlayers(List<Player> players) {
 		this.players.clear();
 		this.players.addAll(players);
 	}
