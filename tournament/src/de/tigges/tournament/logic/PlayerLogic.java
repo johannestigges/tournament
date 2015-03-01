@@ -1,9 +1,9 @@
 package de.tigges.tournament.logic;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import de.tigges.tournament.model.Match;
 import de.tigges.tournament.model.Player;
 import de.tigges.tournament.model.Round;
@@ -26,10 +26,10 @@ public class PlayerLogic {
 	 * @param previousRounds all previous rounds
 	 * @return id of the selected player who has to pause in the actual round
 	 */
-	public int calculatePausedPlayerId(Round actualRound, ObservableList<Round> previousRounds) {
+	public int calculatePausedPlayerId(Round actualRound, List<Round> previousRounds) {
 		// must make a copy of the actual players, because the 'score' of each player 
 		// now means 'number of paused rounds'
-		ObservableList<Player> possiblePausedPlayers = createNew(actualRound.getPlayers());
+		List<Player> possiblePausedPlayers = createNew(actualRound.getPlayers());
 		
 		calculatePausedPlayerScores(possiblePausedPlayers, previousRounds);
 		return selectPlayerWithLowestScore(possiblePausedPlayers);
@@ -55,7 +55,7 @@ public class PlayerLogic {
 	 * 
 	 * @return the id of the selected partner
 	 */
-	public void addTeamPlayer(ObservableList<Player> team, ObservableList<Player> availablePlayers, ObservableList<Round> previousRounds) {
+	public void addTeamPlayer(List<Player> team, List<Player> availablePlayers, List<Round> previousRounds) {
 		// select the first team member randomly
 		if (team.isEmpty()) {
 			team.add(RandomUtil.removeRandomElement(availablePlayers));
@@ -63,7 +63,7 @@ public class PlayerLogic {
 		}
 		
 		// make a copy of all available players to calculate the score
-		ObservableList<Player> scoredPlayers = createNew(availablePlayers);
+		List<Player> scoredPlayers = createNew(availablePlayers);
 		
 		for (Round round: previousRounds) {
 			for (Match match: round.getMatches()) {
@@ -86,7 +86,7 @@ public class PlayerLogic {
 	 * @param availablePlayers
 	 * @param matchTeam
 	 */
-	private void addTeamScore(ObservableList<Player> team, ObservableList<Player> availablePlayers,	ObservableList<Player> matchTeam) {
+	private void addTeamScore(List<Player> team, List<Player> availablePlayers,	List<Player> matchTeam) {
 		for (Player player: availablePlayers) {
 			if (matchTeam.contains(player)) {
 				for (Player teamPlayer: team) {
@@ -106,7 +106,7 @@ public class PlayerLogic {
 	 * @param possiblePausedPlayers
 	 * @param previousRounds
 	 */
-	public void calculatePausedPlayerScores(ObservableList<Player> possiblePausedPlayers, ObservableList<Round> previousRounds) {
+	public void calculatePausedPlayerScores(List<Player> possiblePausedPlayers, List<Round> previousRounds) {
 		for (Round round: previousRounds) {
 			for (Player player: round.getPausedPlayers()) {
 				Player p = ListUtil.find(possiblePausedPlayers, player.getId());
@@ -129,7 +129,7 @@ public class PlayerLogic {
 	 * @param players
 	 * @return id of the selected player
 	 */
-	private int selectPlayerWithLowestScore (ObservableList<Player> players) {
+	private int selectPlayerWithLowestScore (List<Player> players) {
 		// find the lowest score in the list
 		int minScore = Integer.MAX_VALUE;
 		for (Player player: players) {
@@ -158,8 +158,8 @@ public class PlayerLogic {
 	 * @param list
 	 * @return
 	 */
-	public ObservableList<Player> createNew(ObservableList<Player> list) {
-		ObservableList<Player> newList = FXCollections.observableArrayList();
+	public List<Player> createNew(List<Player> list) {
+		List<Player> newList = FXCollections.observableArrayList();
 		for (Player player: list) {
 			newList.add(new Player(player));
 		}

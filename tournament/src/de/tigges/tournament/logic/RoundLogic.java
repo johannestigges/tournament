@@ -1,5 +1,7 @@
 package de.tigges.tournament.logic;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import de.tigges.tournament.model.Match;
@@ -106,7 +108,7 @@ public class RoundLogic {
 	 * @param previousRounds
 	 * @param round
 	 */
-	public void addPausedPlayer (ObservableList<Round> previousRounds, Round round) {
+	public void addPausedPlayer (List<Round> previousRounds, Round round) {
 		int pausedPlayerId = playerLogic.calculatePausedPlayerId(round, previousRounds);
 		Player pausedPlayer = ListUtil.find(round.getPlayers(), pausedPlayerId);
 		round.getPausedPlayers().add(pausedPlayer);
@@ -153,7 +155,7 @@ public class RoundLogic {
 			return null;
 		}
 		
-		ObservableList<Player> availablePlayers = playerLogic.createNew(newRound.getPlayers());
+		List<Player> availablePlayers = playerLogic.createNew(newRound.getPlayers());
 
 		for (Match match: newRound.getMatches()) {
 			availablePlayers.removeAll(match.getHomeTeam());
@@ -182,7 +184,7 @@ public class RoundLogic {
 	 * @return
 	 */
 	public boolean canAddMatch(Tournament tournament, Round round) {
-		ObservableList<Player> availablePlayers = FXCollections.observableArrayList(round.getPlayers());
+		List<Player> availablePlayers = FXCollections.observableArrayList(round.getPlayers());
 		for (Match match: round.getMatches()) {
 			ListUtil.removeAll(availablePlayers, match.getHomeTeam());
 			ListUtil.removeAll(availablePlayers, match.getAwayTeam());

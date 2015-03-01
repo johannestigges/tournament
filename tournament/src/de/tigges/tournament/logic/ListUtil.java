@@ -1,8 +1,8 @@
 package de.tigges.tournament.logic;
 
 import java.util.Iterator;
+import java.util.List;
 
-import javafx.collections.ObservableList;
 import de.tigges.tournament.model.Id;
 
 /**
@@ -18,7 +18,7 @@ public class ListUtil {
 	 * @param id
 	 * @return found element or null
 	 */
-	public static <T extends Id> T find (ObservableList<T> list, int id) {
+	public static <T extends Id> T find (List<T> list, int id) {
 		for (T element: list) {
 			if (element.getId() == id) {
 				return element;
@@ -33,7 +33,7 @@ public class ListUtil {
 	 * @param id
 	 * @return true, if the list contains an element with the given id
 	 */
-	public static <T extends Id> boolean contains (ObservableList<T> list, int id) {
+	public static <T extends Id> boolean contains (List<T> list, int id) {
 		return find(list, id) != null;
 	}
 	
@@ -45,7 +45,7 @@ public class ListUtil {
 	 * @param elementToRemove
 	 * @return found end removed element or null
 	 */
-	public static <T extends Id> T remove(ObservableList<T> list, T elementToRemove) {
+	public static <T extends Id> T remove(List<T> list, T elementToRemove) {
 		Iterator<T> iter = list.iterator();
 		while (iter.hasNext()) {
 			T element = iter.next();
@@ -63,7 +63,7 @@ public class ListUtil {
 	 * @param list remove elements from this list
 	 * @param elementsToRemove these are the elements to remove
 	 */
-	public static <T extends Id> void removeAll (ObservableList<T> list, ObservableList<T> elementsToRemove) {
+	public static <T extends Id> void removeAll (List<T> list, List<T> elementsToRemove) {
 		for (T elementToRemove: elementsToRemove) {
 			remove(list, elementToRemove);
 		}
@@ -75,7 +75,7 @@ public class ListUtil {
 	 * @param id
 	 * @return found and removed element or null
 	 */
-	public static <T extends Id> T findAndRemove (ObservableList<T> list, int id) {
+	public static <T extends Id> T findAndRemove (List<T> list, int id) {
 		T element = find(list, id);
 		if (element != null) {
 			list.remove(element);

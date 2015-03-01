@@ -1,11 +1,12 @@
 package de.tigges.tournament.util;
 
-import javafx.collections.ObservableList;
+import java.util.List;
+
 import de.tigges.tournament.model.Player;
 
 public class PlayerUtil {
 
-	public static String formatPlayerList (ObservableList<Player> players, String separator) {
+	public static String formatPlayerList (List<Player> players, String separator) {
 		if (players == null || players.size() == 0) {
 			return "";
 		}

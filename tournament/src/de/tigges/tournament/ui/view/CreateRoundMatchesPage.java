@@ -1,6 +1,7 @@
 package de.tigges.tournament.ui.view;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,7 +28,7 @@ public class CreateRoundMatchesPage extends NewRoundWizardPage {
 	
 	@Override
 	public void onStart() {
-		matchesTable.setItems(getRoundMatches());
+		matchesTable.setItems((ObservableList<Match>) getRoundMatches());
 	}
 	
 	@Override

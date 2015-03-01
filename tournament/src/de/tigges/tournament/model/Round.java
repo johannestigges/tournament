@@ -1,5 +1,7 @@
 package de.tigges.tournament.model;
 
+import java.util.List;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -10,9 +12,9 @@ import javax.xml.bind.annotation.XmlElement;
 public class Round {
 
 	private final IntegerProperty round;
-	private final ObservableList<Match> matches;
-	private final ObservableList<Player> players;
-	private final ObservableList<Player> pausedPlayers;
+	private final List<Match> matches;
+	private final List<Player> players;
+	private final List<Player> pausedPlayers;
 	
 	public Round () {
 		this.round = new SimpleIntegerProperty();
@@ -27,28 +29,28 @@ public class Round {
 	}
 
 	@XmlElement(name="pausedPlayer")
-	public ObservableList<Player> getPausedPlayers() {
+	public List<Player> getPausedPlayers() {
 		return pausedPlayers;
 	}
-	public void setPausedPlayers(ObservableList<Player> pausedPlayers) {
+	public void setPausedPlayers(List<Player> pausedPlayers) {
 		this.pausedPlayers.clear();
 		this.pausedPlayers.addAll(pausedPlayers);
 	}
 	
 	@XmlElement(name="player")
-	public ObservableList<Player> getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
-	public void setPlayers(ObservableList<Player> players) {
+	public void setPlayers(List<Player> players) {
 		this.players.clear();
 		this.players.addAll(players);
 	}
 
 	@XmlElement(name="match")
-	public ObservableList<Match> getMatches() {
+	public List<Match> getMatches() {
 		return matches;
 	}
-	public void setMatches(ObservableList<Match> matches) {
+	public void setMatches(List<Match> matches) {
 		this.matches.clear();
 		this.matches.addAll(matches);
 	}

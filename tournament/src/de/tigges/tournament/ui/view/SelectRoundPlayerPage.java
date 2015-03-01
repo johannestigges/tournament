@@ -1,5 +1,7 @@
 package de.tigges.tournament.ui.view;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -20,10 +22,10 @@ public class SelectRoundPlayerPage extends NewRoundWizardPage {
 	
 	@Override
 	public void onStart() {
-		ObservableList<Player> players = getRound().getPlayers();
+		List<Player> players = getRound().getPlayers();
 		players.clear();
 		players.addAll(getTournament().getPlayers());
-		roundPlayerTable.setItems(players);
+		roundPlayerTable.setItems((ObservableList<Player>) players);
 	}
 	
 	@FXML

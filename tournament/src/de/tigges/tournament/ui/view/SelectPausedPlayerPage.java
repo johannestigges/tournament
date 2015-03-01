@@ -1,5 +1,6 @@
 package de.tigges.tournament.ui.view;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,8 +28,8 @@ public class SelectPausedPlayerPage extends NewRoundWizardPage {
 	
 	@Override
 	public void onStart() {
-		roundPlayerTable.setItems(getRound().getPlayers());
-		pausedPlayerTable.setItems(getRound().getPausedPlayers());
+		roundPlayerTable.setItems((ObservableList<Player>) getRound().getPlayers());
+		pausedPlayerTable.setItems((ObservableList<Player>) getRound().getPausedPlayers());
 	}
 
 	@FXML

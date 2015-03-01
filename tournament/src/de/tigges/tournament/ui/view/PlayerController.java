@@ -1,5 +1,7 @@
 package de.tigges.tournament.ui.view;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -22,7 +24,7 @@ public class PlayerController extends BaseController<Tournament> {
 
 	@Override
 	public void onStart() {
-		players.setItems(getData().getPlayers());
+		players.setItems((ObservableList<Player>) getData().getPlayers());
 		players.getSelectionModel().select(0);
 	}
 
@@ -81,8 +83,8 @@ public class PlayerController extends BaseController<Tournament> {
 		}
 	}
 
-	private void showMatch(ObservableList<Player> homeTeam,
-			ObservableList<Player> awayTeam, int homeScore, int awayScore) {
+	private void showMatch(List<Player> homeTeam,
+			List<Player> awayTeam, int homeScore, int awayScore) {
 		team(homeTeam);
 		showTag("td", "-");
 		team(awayTeam);
@@ -91,7 +93,7 @@ public class PlayerController extends BaseController<Tournament> {
 		showTag("td", "" + awayScore);
 	}
 
-	private void team(ObservableList<Player> team) {
+	private void team(List<Player> team) {
 		showTagStart("td");
 		for (Player p: team) {
 			if (p.equals(player)) {

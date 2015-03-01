@@ -1,6 +1,7 @@
 package de.tigges.tournament.ui.view;
 
-import javafx.collections.ObservableList;
+import java.util.List;
+
 import de.tigges.tournament.logic.RoundLogic;
 import de.tigges.tournament.model.Match;
 import de.tigges.tournament.model.Round;
@@ -12,7 +13,7 @@ public class NewRoundWizardPage extends WizardPageController<Tournament> {
 	public Round getRound() {
 		return getWizard().getRound();
 	}
-	public ObservableList<Match> getRoundMatches() {
+	public List<Match> getRoundMatches() {
 		return getRound().getMatches();
 	}
 
