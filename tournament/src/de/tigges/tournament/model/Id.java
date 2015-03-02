@@ -5,7 +5,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * Base class for a Bean containing an identifier
+ * 
+ * @author johannes
+ *
+ */
 public class Id {
+	/**
+	 * static maximum id
+	 */
 	protected static int max_id = 0;
 	
 	private final IntegerProperty id;

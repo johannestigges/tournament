@@ -51,7 +51,6 @@ public class Tournament {
 	public List<Player> getPlayers() {
 		return players;
 	}
-
 	public void setPlayers(List<Player> players) {
 		this.players.clear();
 		this.players.addAll(players);
@@ -67,6 +66,7 @@ public class Tournament {
 	public IntegerProperty teamSize() {
 		return teamSize;
 	}
+
 	@XmlElement
 	public int getCourts() {
 		return courts.get();
