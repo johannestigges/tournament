@@ -8,11 +8,34 @@ import javafx.collections.FXCollections;
 
 import javax.xml.bind.annotation.XmlElement;
 
-
+/**
+ * Java bean representing one match
+ * <p>
+ * A match has the following properties
+ * <li>{@link #homeTeam}
+ * <li>{@link #awayTeam}
+ * <li>{@link #homeScore}
+ * <li<{@link #awayScore}
+ *  
+ * @author johannes
+ *
+ */
 public class Match extends Id {
+	/**
+	 * List of {@link Player}s building the home team
+	 */
 	private final List<Player> homeTeam;
+	/**
+	 * List of {@link Player}s uilding the away team
+	 */
 	private final List<Player> awayTeam;
+	/**
+	 * The score of the {@link #homeTeam}
+	 */
 	private final IntegerProperty homeScore;
+	/**
+	 * The score of the {@link #awayTeam}
+	 */
 	private final IntegerProperty awayScore;
 	
 	public Match() {
@@ -57,6 +80,7 @@ public class Match extends Id {
 	public IntegerProperty homeScoreProperty() {
 		return homeScore;
 	}
+
 	public int getAwayScore() {
 		return awayScore.get();
 	}
@@ -72,11 +96,22 @@ public class Match extends Id {
 		setAwayScore(awayScore);
 	}
 
+	/**
+	 * checks, whether the given team is the {@link #homeTeam}
+	 * @param team
+	 * @return
+	 */
 	public boolean isHomeTeam (List<Player> team) {
 		return team.size() == homeTeam.size() &&  
 				homeTeam.containsAll(team) && 
 				team.containsAll(homeTeam);
 	}
+	
+	/**
+	 * checks, whether the given team is the {@link #awayTeam}
+	 * @param team
+	 * @return
+	 */
 	public boolean isAwayTeam (List<Player> team) {
 		return team.size() == awayTeam.size() && 
 				awayTeam.containsAll(team) && 

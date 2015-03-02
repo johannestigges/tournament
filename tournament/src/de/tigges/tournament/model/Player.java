@@ -5,10 +5,34 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Java bean representing one player
+ * <p>
+ * a player has the following properties
+ * <li>{@link #name}
+ * <li>{@link #score}
+ * <li>{@link #handicap}
+ * 
+ * @author johannes
+ */
 public class Player extends Id {
 	
+	/**
+	 * The name of the player
+	 */
 	private final StringProperty name;
+	/**
+	 * the total score of the player
+	 */
 	private final IntegerProperty score;
+	/**
+	 * the handicap.
+	 * <p>
+	 * the handicap can influence the score (and perhaps
+	 * the algorithm for selecting teams).
+	 * <p>
+	 * At the momemt, the handicap is not used anywhere...
+	 */
 	private final IntegerProperty handicap;
 	
 	public Player() {
@@ -16,10 +40,12 @@ public class Player extends Id {
 		this.score = new SimpleIntegerProperty(); 
 		this.handicap = new SimpleIntegerProperty(); 
 	}
+
 	public Player(String name) {
 		this();
 		setName(name);
 	}
+
 	public Player(int id) {
 		this();
 		setId(id);
@@ -70,6 +96,11 @@ public class Player extends Id {
 		return getName() == null ? String.format("id(%d)",getId()) : getName();
 	}
 	
+	/**
+	 * add the amount to the score
+	 * @param amount
+	 * @return the new score
+	 */
 	public int increaseScore (int amount) {
 		int newScore = score.get() + amount;
 		score.set(newScore);

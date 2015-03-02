@@ -8,11 +8,34 @@ import javafx.collections.FXCollections;
 
 import javax.xml.bind.annotation.XmlElement;
 
+/**
+ * Java bean representing one round
+ * <p>
+ * a round has the following attributes.
+ * <li>{@link #round}
+ * <li>{@link #matches}
+ * <li>{@link #players}
+ * <li>{@link #pausedPlayers}
+ * 
+ * @author johannes
+ *
+ */
 public class Round {
-
+	/**
+	 * the number of this round.
+	 */
 	private final IntegerProperty round;
+	/**
+	 * the list of all matches belonging to the round.
+	 */
 	private final List<Match> matches;
+	/**
+	 * the loist of all players, that really play in this round.
+	 */
 	private final List<Player> players;
+	/**
+	 * the list f all players that must pause in this round.
+	 */
 	private final List<Player> pausedPlayers;
 	
 	public Round () {
@@ -22,6 +45,7 @@ public class Round {
 		this.pausedPlayers = FXCollections.observableArrayList();
 		
 	}
+	
 	public Round (int round) {
 		this();
 		setRound(round);
