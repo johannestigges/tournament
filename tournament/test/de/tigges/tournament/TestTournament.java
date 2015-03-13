@@ -10,8 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -168,7 +166,7 @@ public class TestTournament {
 	 * @param l1
 	 * @param l2
 	 */
-	private <I extends Id> void assertDistinct (ObservableList<I> l1, ObservableList<I> l2) {
+	private <I extends Id> void assertDistinct (List<I> l1, List<I> l2) {
 		for (I i1: l1) {
 			assertFalse(l2.contains(i1));
 		}
@@ -181,7 +179,7 @@ public class TestTournament {
 	 * check that there are no elements with the same id in a list.
 	 * @param l
 	 */
-	private <I extends Id> void assertNoDoubles(ObservableList<I> l) {
+	private <I extends Id> void assertNoDoubles(List<I> l) {
 		Set<I> set = new HashSet<I>();
 		for (I i: l) {
 			assertFalse(set.contains(i));
