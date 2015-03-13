@@ -7,11 +7,11 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
@@ -38,24 +38,36 @@ public class TournamentUI extends UI {
 		Panel roundsPanel = new Panel("Rounds");
 		Panel matchesPanel = new Panel("Matches");
 		Table playersTable = new Table("PlayersTable");
+		playersTable.addContainerProperty("Id", Integer.class, null);
+		playersTable.addContainerProperty("Name", String.class, null);
+		playersTable.addContainerProperty("Score", Integer.class, null);
+		playersTable.addContainerProperty("Handicap", Integer.class,null);
 		Table roundsTable = new Table("RoundsTable");
 		Table matchesTable = new Table("MatchesTable");
 		playerPanel.setContent(playersTable);
+		HorizontalLayout newPlayerLayout = new HorizontalLayout();
+		TextField newPlayer = new TextField(null,"newPlayer");
+		Button addPlayerButton = new Button("addPlayer");
+		newPlayerLayout.addComponent(newPlayer);
+		newPlayerLayout.addComponent(addPlayerButton);
+		hPanel.addComponent(newPlayerLayout);
 		roundsPanel.setContent(roundsTable);
 		matchesPanel.setContent(matchesTable);
+
+		VerticalLayout playerLayout = new VerticalLayout();
+		playerLayout.addComponent(playerPanel);
+		playerLayout.addComponent(newPlayerLayout);
+
+		VerticalLayout roundsLayout = new VerticalLayout();
+		roundsLayout.addComponent(roundsPanel);
+		Button addRoundButton = new Button("addRound");
+		roundsLayout.addComponent(roundsPanel);
+		roundsLayout.addComponent(addRoundButton);
 		
 		layout.addComponent(hPanel);
-		hPanel.setFirstComponent(playerPanel);
+		hPanel.setFirstComponent(playerLayout);
 		hPanel.setSecondComponent(vPanel);
-		vPanel.setFirstComponent(roundsPanel);
+		vPanel.setFirstComponent(roundsLayout);
 		vPanel.setSecondComponent(matchesPanel);
-		
-		Button button = new Button("Click Me");
-		button.addClickListener(new Button.ClickListener() {
-			public void buttonClick(ClickEvent event) {
-				layout.addComponent(new Label("Thank you for clicking"));
-			}
-		});
-		layout.addComponent(button);
 	}
 }
