@@ -43,7 +43,7 @@ public class ListUtil {
 	 * If the element is in the list, it is removed from the list and returned
 	 * @param list
 	 * @param elementToRemove
-	 * @return found end removed element or null
+	 * @return removed element or null
 	 */
 	public static <T extends Id> T remove(List<T> list, T elementToRemove) {
 		Iterator<T> iter = list.iterator();

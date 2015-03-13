@@ -3,7 +3,6 @@ package de.tigges.tournament.logic;
 import java.util.List;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import de.tigges.tournament.model.Match;
 import de.tigges.tournament.model.Player;
 import de.tigges.tournament.model.Round;
@@ -112,7 +111,8 @@ public class RoundLogic {
 		int pausedPlayerId = playerLogic.calculatePausedPlayerId(round, previousRounds);
 		Player pausedPlayer = ListUtil.find(round.getPlayers(), pausedPlayerId);
 		round.getPausedPlayers().add(pausedPlayer);
-		ListUtil.remove(round.getPlayers(), pausedPlayer);
+		round.getPlayers().remove(pausedPlayer);
+//		ListUtil.remove(round.getPlayers(), pausedPlayer);
 	}
 
 	/**
@@ -162,8 +162,8 @@ public class RoundLogic {
 			availablePlayers.removeAll(match.getAwayTeam());
 		}
 		
-		ObservableList<Player> homeTeam = FXCollections.observableArrayList();
-		ObservableList<Player> awayTeam = FXCollections.observableArrayList();
+		List<Player> homeTeam = FXCollections.observableArrayList();
+		List<Player> awayTeam = FXCollections.observableArrayList();
 		
 		while (homeTeam.size() < tournament.getTeamSize()) {
 			playerLogic.addTeamPlayer(homeTeam, availablePlayers, tournament.getRounds());
