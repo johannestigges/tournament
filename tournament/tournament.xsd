@@ -1,0 +1,76 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="tournament">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:byte" name="courts"/>
+        <xs:element name="player" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:byte" name="handicap"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:byte" name="score"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="round" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="match" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:short" name="id"/>
+                    <xs:element type="xs:byte" name="awayScore"/>
+                    <xs:element name="awayTeam" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="id"/>
+                          <xs:element type="xs:byte" name="handicap"/>
+                          <xs:element type="xs:string" name="name"/>
+                          <xs:element type="xs:byte" name="score"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:byte" name="homeScore"/>
+                    <xs:element name="homeTeam" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="id"/>
+                          <xs:element type="xs:byte" name="handicap"/>
+                          <xs:element type="xs:string" name="name"/>
+                          <xs:element type="xs:byte" name="score"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="pausedPlayer" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="id"/>
+                    <xs:element type="xs:byte" name="handicap"/>
+                    <xs:element type="xs:string" name="name"/>
+                    <xs:element type="xs:byte" name="score"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="player" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="id"/>
+                    <xs:element type="xs:byte" name="handicap"/>
+                    <xs:element type="xs:string" name="name"/>
+                    <xs:element type="xs:byte" name="score"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:byte" name="round"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:byte" name="teamSize"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
