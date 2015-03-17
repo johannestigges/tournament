@@ -8,7 +8,6 @@ import java.util.Random;
  * 
  * @see Random
  * @author johannes
- *
  */
 public class RandomUtil {
 

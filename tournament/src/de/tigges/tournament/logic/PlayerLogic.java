@@ -19,7 +19,7 @@ public class PlayerLogic {
 	 * calculate a player that must pause in the actual round
 	 * <p>
 	 * This is done by selecting the player who has the lowest number of paused
-	 * rounds. If more than one players have the same lowest ruond number,
+	 * rounds. If more than one players have the same lowest round number,
 	 * a random player is chosen.
 	 * 
 	 * @param actualRound

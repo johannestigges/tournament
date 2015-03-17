@@ -6,7 +6,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * Base class for a Bean containing an identifier
+ * Base class for a Bean having an identifier
  * 
  * @author johannes
  *

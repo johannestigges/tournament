@@ -112,7 +112,6 @@ public class RoundLogic {
 		Player pausedPlayer = ListUtil.find(round.getPlayers(), pausedPlayerId);
 		round.getPausedPlayers().add(pausedPlayer);
 		round.getPlayers().remove(pausedPlayer);
-//		ListUtil.remove(round.getPlayers(), pausedPlayer);
 	}
 
 	/**

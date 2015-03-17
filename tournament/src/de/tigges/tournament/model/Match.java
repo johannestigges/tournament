@@ -12,10 +12,10 @@ import javax.xml.bind.annotation.XmlElement;
  * Java bean representing one match
  * <p>
  * A match has the following properties
- * <li>{@link #homeTeam}
- * <li>{@link #awayTeam}
- * <li>{@link #homeScore}
- * <li<{@link #awayScore}
+ * <li>{@link #homeTeam} list of players building the home team
+ * <li>{@link #awayTeam} list of players building the away team
+ * <li>{@link #homeScore} the score of the home team
+ * <li<{@link #awayScore} the score of the away team
  *  
  * @author johannes
  *
@@ -26,7 +26,7 @@ public class Match extends Id {
 	 */
 	private final List<Player> homeTeam;
 	/**
-	 * List of {@link Player}s uilding the away team
+	 * List of {@link Player}s building the away team
 	 */
 	private final List<Player> awayTeam;
 	/**
@@ -91,6 +91,11 @@ public class Match extends Id {
 		return awayScore;
 	}
 
+	/**
+	 * set the score of the match
+	 * @param homeScore score of the home team
+	 * @param awayScore score of the away team
+	 */
 	public void setScore (int homeScore, int awayScore) {
 		setHomeScore(homeScore);
 		setAwayScore(awayScore);

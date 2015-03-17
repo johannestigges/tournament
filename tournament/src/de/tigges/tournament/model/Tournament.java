@@ -9,6 +9,20 @@ import javafx.collections.FXCollections;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Java bean representing a complete tournament
+ * <p>
+ * A tournament has the following properties
+ * <li>{@link #teamSize} the number of players in each team
+ * <li>{@link #courts} the maximum number of matches in every round
+ * <li>{@link #players} list of all players
+ * <li>{@link #rounds} list of tournament rounds
+ * <p>
+ * Before adding a round, the {@link #teamSize} and {@link #courts}
+ * must be set.
+ * 
+ * @author johannes
+ */
 @XmlRootElement(name="tournament")
 public class Tournament {
 	private final List<Round> rounds;
@@ -23,6 +37,12 @@ public class Tournament {
 		this.courts = new SimpleIntegerProperty();
 	}
 
+	/**
+	 * init this tournament by copying all data from the
+	 * given tournament
+	 * 
+	 * @param tournament
+	 */
 	public void init (Tournament tournament) {
 		clear();
 		if (tournament != null) {

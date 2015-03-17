@@ -6,7 +6,7 @@ import java.util.List;
 import de.tigges.tournament.model.Id;
 
 /**
- * Helper class with static utility methods concerning lists
+ * Helper class with static utility methods dealing with lists
  * 
  * @author johannes
  */

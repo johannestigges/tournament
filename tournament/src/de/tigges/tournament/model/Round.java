@@ -12,13 +12,12 @@ import javax.xml.bind.annotation.XmlElement;
  * Java bean representing one round
  * <p>
  * a round has the following attributes.
- * <li>{@link #round}
- * <li>{@link #matches}
- * <li>{@link #players}
- * <li>{@link #pausedPlayers}
+ * <li>{@link #round} round number
+ * <li>{@link #matches} list of matches
+ * <li>{@link #players} list of all players
+ * <li>{@link #pausedPlayers} list of players in pause
  * 
  * @author johannes
- *
  */
 public class Round {
 	/**
@@ -30,11 +29,11 @@ public class Round {
 	 */
 	private final List<Match> matches;
 	/**
-	 * the loist of all players, that really play in this round.
+	 * the list of all players, that really play in this round.
 	 */
 	private final List<Player> players;
 	/**
-	 * the list f all players that must pause in this round.
+	 * the list of all players that must pause in this round.
 	 */
 	private final List<Player> pausedPlayers;
 	
