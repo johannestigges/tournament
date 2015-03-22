@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.layout.VBox?>
+
+
+<WebView fx:id="webView" prefHeight="-1.0" prefWidth="-1.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.tigges.tournament.ui.view.ShowOverviewController" />

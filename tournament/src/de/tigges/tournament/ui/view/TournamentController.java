@@ -147,7 +147,8 @@ public class TournamentController extends BaseController<Tournament> {
 
 	@FXML
 	private void handlePlayerDetails() {
-		mainApp.showDialog(resolve("PlayerDetails"), "view/Player.fxml");
+//		mainApp.showDialog(resolve("PlayerDetails"), "view/Player.fxml");
+		mainApp.showDialog(resolve("PlayerDetails"), "view/Overview.fxml");
 	}
 	
 	@FXML
