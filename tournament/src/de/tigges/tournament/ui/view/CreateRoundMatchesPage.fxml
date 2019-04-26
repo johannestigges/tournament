@@ -21,6 +21,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#handleCalculateAllMatches" text="%CalculateAllMatches" />
             <Button mnemonicParsing="false" onAction="#handleCalculateOneMatch" text="%CalculateOneMatch" />
+            <Button mnemonicParsing="false" onAction="#handleEnterOneMatch" text="%EnterOneMatch" />
             <Button mnemonicParsing="false" onAction="#handleRemoveMatch" text="%RemoveMatch" />
          </children>
          <padding>

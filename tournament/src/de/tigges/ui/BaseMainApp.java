@@ -18,38 +18,39 @@ public abstract class BaseMainApp<D> extends Application implements MainApp<D> {
 	private String styleSheet;
 
 	public BaseMainApp() {
-		bundle = ResourceBundle.getBundle(getClass().getName());
+		setBundle(ResourceBundle.getBundle(getClass().getName()));
 	}
-	
+
 	public BaseMainApp(ResourceBundle bundle) {
 		setBundle(bundle);
 	}
-	
+
 	public BaseMainApp(ResourceBundle bundle, String styleSheet) {
 		this(bundle);
 		setStyleSheet(styleSheet);
 	}
-	
+
 	protected void setBundle(ResourceBundle bundle) {
 		this.bundle = bundle;
 	}
+
 	@Override
 	public ResourceBundle getBundle() {
 		return bundle;
 	}
-	
+
 	protected void setStyleSheet(String styleSheet) {
 		this.styleSheet = styleSheet;
 	}
+
 	protected String getStyleSheet() {
 		return styleSheet;
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 	}
-
 
 	@Override
 	public Stage getPrimaryStage() {
@@ -64,19 +65,22 @@ public abstract class BaseMainApp<D> extends Application implements MainApp<D> {
 	@Override
 	public <T> T load(String resource) {
 		FXMLLoader loader = getLoader(resource);
-		T gui = null;
-		try {
-			gui = loader.load();
-		} catch (IOException e) {
-			System.out.printf("cannot load resource '%s'%n", resource);
-			e.printStackTrace();
-			System.exit(1);
-			return null;
-		}
+		T gui = load(loader);
 		Controller<D> controller = loader.getController();
 		controller.setMainApp(this);
 		controller.onStart();
 		return gui;
+	}
+
+	public <T> T load(FXMLLoader loader) {
+		try {
+			return loader.load();
+		} catch (IOException e) {
+			System.out.printf("cannot load resource '%s'%n", loader.getLocation().toExternalForm());
+			e.printStackTrace();
+			System.exit(1);
+			return null;
+		}
 	}
 
 	@Override
@@ -89,7 +93,7 @@ public abstract class BaseMainApp<D> extends Application implements MainApp<D> {
 
 	@Override
 	public void showDialog(String title, String resource) {
-		showDialog(title, (Parent)load(resource));
+		showDialog(title, (Parent) load(resource));
 	}
 
 	@Override

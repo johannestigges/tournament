@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="de.tigges.tournament.ui.view.CreateMatchPage">
+	<children>
+		<SplitPane dividerPositions="0.3"
+			AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<items>
+				<AnchorPane>
+					<children>
+						<Label styleClass="Label" text="%AvailablePlayers"
+							AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+						<TableView fx:id="availablePlayerTable"
+							AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+							<columns>
+								<TableColumn fx:id="availablePlayerNameColumn"
+									editable="false" maxWidth="1000.0" minWidth="20.0"
+									prefWidth="500.0" text="%PlayerName" />
+							</columns>
+						</TableView>
+
+						<HBox alignment="TOP_RIGHT" spacing="10.0"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+							<children>
+								<Button mnemonicParsing="false"
+									onAction="#handleAddHomePlayer" text="%AddHomePlayer" />
+								<Button mnemonicParsing="false"
+									onAction="#handleAddAwayPlayer" text="%AddAwayPlayer" />
+							</children>
+							<padding>
+								<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+							</padding>
+						</HBox>
+					</children>
+				</AnchorPane>
+				<SplitPane dividerPositions="0.5" orientation="VERTICAL"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<items>
+						<AnchorPane>
+							<children>
+								<Label styleClass="Label" text="%HomePlayers"
+									AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+								<TableView fx:id="homePlayerTable"
+									AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+									<columns>
+										<TableColumn fx:id="homePlayerNameColumn"
+											editable="false" maxWidth="1000.0" minWidth="20.0"
+											prefWidth="500.0" text="%PlayerName" />
+									</columns>
+								</TableView>
+								<HBox alignment="TOP_RIGHT" spacing="10.0"
+									AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+									<children>
+										<Button mnemonicParsing="false"
+											onAction="#handleRemoveHomePlayer" text="%RemoveHomePlayer" />
+									</children>
+								</HBox>
+							</children>
+						</AnchorPane>
+						<AnchorPane>
+							<children>
+								<Label styleClass="Label" text="%AwayPlayers"
+									AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+								<TableView fx:id="awayPlayerTable"
+									AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+									<columns>
+										<TableColumn fx:id="awayPlayerNameColumn"
+											editable="false" maxWidth="1000.0" minWidth="20.0"
+											prefWidth="500.0" text="%PlayerName" />
+									</columns>
+								</TableView>
+								<HBox alignment="TOP_RIGHT" spacing="10.0"
+									AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+									<children>
+										<Button mnemonicParsing="false"
+											onAction="#handleRemoveAwayPlayer" text="%RemoveAwayPlayer" />
+									</children>
+								</HBox>
+							</children>
+						</AnchorPane>
+					</items>
+				</SplitPane>
+			</items>
+		</SplitPane>
+		<HBox spacing="10.0" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.rightAnchor="0.0">
+			<children>
+				<Button mnemonicParsing="false" onAction="#handleOk"
+					text="%Ok" />
+				<Button mnemonicParsing="false" onAction="#handleCancel"
+					text="%Cancel" />
+			</children>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+		</HBox>
+	</children>
+</AnchorPane>
